@@ -55,10 +55,21 @@ const links = [
               </a>
             ))
           }
+          <a
+            href="https://tally.so/r/ZjaeZV"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-1 rounded-xl bg-logo-navy px-3 py-2.5 text-center text-meta font-semibold text-canvas-white transition-colors hover:bg-deep-navy"
+          >
+            Get started
+          </a>
         </div>
       </details>
 
-      <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="primary">Get started</Button>
+      {/* Standalone CTA only from md up — on phones the menu carries it */}
+      <div class="hidden md:block">
+        <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="primary">Get started</Button>
+      </div>
     </div>
   </div>
 </header>

@@ -102,6 +102,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* keep #anchor jumps clear of the fixed floating nav (top-5 + h-14) */
+    scroll-padding-top: 6rem;
   }
   body {
     font-family: var(--font-inter);

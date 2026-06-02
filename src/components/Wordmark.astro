@@ -1,0 +1,17 @@
+---
+// "And/or Labs" brand wordmark + logo mark, styled in one consistent mono
+// lockup (the way "Labs" was styled).
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<a
+  href="/"
+  class:list={['group inline-flex items-center gap-2.5 text-ink-black', className]}
+  aria-label="And/or Labs home"
+>
+  <img src="/andor-logo.png" alt="" width="32" height="32" class="h-8 w-8 rounded-lg shadow-subtle" />
+  <span class="font-mono text-meta font-light uppercase tracking-[0.1em] text-ink-black">And/or Labs</span>
+</a>

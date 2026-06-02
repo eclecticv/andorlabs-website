@@ -1,0 +1,67 @@
+---
+// Footer — quiet ink-black close with the wordmark, nav echo, and socials.
+import Container from './Container.astro';
+
+const year = new Date().getFullYear();
+const nav = [
+  { label: 'Methodology', href: '#methodology' },
+  { label: 'How we work', href: '#how-we-work' },
+  { label: 'Wall of love', href: '#testimonials' },
+];
+// Brand marks are inlined — Lucide dropped logo glyphs (linkedin/x/github)
+// from its core set, so a general icon set can't be relied on here.
+const socials = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/vishveshwar-jatain',
+    path: 'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com',
+    path: 'M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com',
+    path: 'M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.56v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.08-.72.08-.71.08-.71 1.2.08 1.83 1.21 1.83 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.81 0-1.28.47-2.33 1.24-3.15-.13-.3-.54-1.5.11-3.13 0 0 1.01-.32 3.3 1.2.96-.26 1.98-.39 3-.4 1.02.01 2.04.14 3 .4 2.28-1.52 3.29-1.2 3.29-1.2.65 1.63.24 2.83.12 3.13.77.82 1.23 1.87 1.23 3.15 0 4.51-2.81 5.5-5.49 5.79.43.36.81 1.09.81 2.2v3.26c0 .31.22.68.83.56C20.57 21.91 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z',
+  },
+];
+---
+
+<footer class="border-t border-white/10 bg-deep-navy">
+  <Container class="py-12">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="font-mono text-caption font-normal tracking-[0.04em] text-white/40">&copy; {year} And/or Labs</p>
+
+      <nav class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        {
+          nav.map((l) => (
+            <a href={l.href} class="text-meta text-white/60 transition-colors hover:text-canvas-white">
+              {l.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-2">
+        {
+          socials.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-canvas-white"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-[16px] w-[16px]" aria-hidden="true">
+                <path d={s.path}></path>
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+  </Container>
+</footer>

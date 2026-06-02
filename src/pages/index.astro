@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import Methodology from '../components/Methodology.astro';
+import HowWeWork from '../components/HowWeWork.astro';
+import Testimonials from '../components/Testimonials.astro';
+// import About from '../components/About.astro'; // hidden for the time being
+import Footer from '../components/Footer.astro';
+---
+
+<Base>
+  <Header />
+  <main>
+    <Hero />
+    <Problem />
+    <Methodology />
+    <HowWeWork />
+    <Testimonials />
+    {/* <About /> — hidden for the time being */}
+  </main>
+  <Footer />
+</Base>

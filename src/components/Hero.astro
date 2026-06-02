@@ -1,0 +1,43 @@
+---
+// Hero: centered headline on a faint graph-paper canvas, verbatim founder
+// eyebrow, dual CTAs, a wordless decorative browser frame, then the press row.
+// All COPY is VERBATIM from Site structure.md.
+import Container from './Container.astro';
+import Button from './Button.astro';
+import PressRow from './PressRow.astro';
+---
+
+<section class="graph-paper relative flex min-h-svh flex-col overflow-hidden border-b border-border-light">
+  <!-- soft top vignette so the grid fades into the canvas -->
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-canvas-white/40 via-transparent to-canvas-white"></div>
+  <!-- prismatic rainbow bleeding down from the top edge into the hero -->
+  <div
+    class="prism-line pointer-events-none absolute inset-x-0 top-0 h-72 opacity-70 blur-3xl saturate-150"
+    style="-webkit-mask-image:linear-gradient(to bottom,#000,transparent);mask-image:linear-gradient(to bottom,#000,transparent)"
+  >
+  </div>
+
+  <Container width="narrow" class="relative flex flex-1 flex-col pt-24 pb-8 sm:pt-28">
+    {/* main content — vertically centered in the space above the press row */}
+    <div class="flex w-full flex-1 flex-col items-center justify-center text-center">
+      <p class="mb-4 text-meta text-steel-gray">
+        Founded by <span class="font-semibold text-ink-black">Vishveshwar Jatain</span>, 2x exited AdTech marketer
+      </p>
+      <h1 class="font-satoshi text-display text-logo-navy">
+        The growth OS for<br class="hidden sm:block" /> early-stage adtech
+      </h1>
+
+      <p class="mt-5 max-w-[600px] text-[clamp(1.125rem,1.05rem+0.4vw,1.375rem)] leading-[1.5] text-steel-gray">
+        We help seed-to-series-A adtech startups become the leading pick in their
+        category through clear positioning, content engineering, and AI x GTM enablement.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+        <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="primary" size="lg">Get started</Button>
+        <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg">Claim free audit</Button>
+      </div>
+    </div>
+
+    <PressRow class="pt-6" />
+  </Container>
+</section>

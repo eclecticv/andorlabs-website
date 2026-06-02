@@ -1,0 +1,41 @@
+---
+// Centered section heading: prism kicker + bold Satoshi h2 + optional lede.
+import Kicker from './Kicker.astro';
+
+interface Props {
+  kicker?: string;
+  title: string;
+  lede?: string;
+  align?: 'center' | 'left';
+  invert?: boolean; // light type for dark backgrounds
+  class?: string;
+}
+const { kicker, title, lede, align = 'center', invert = false, class: className = '' } = Astro.props;
+const isCenter = align === 'center';
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-4',
+    isCenter ? 'mx-auto max-w-[var(--width-narrow)] items-center text-center' : 'items-start text-left',
+    className,
+  ]}
+>
+  {kicker && <Kicker>{kicker}</Kicker>}
+  <h2
+    class:list={[
+      'font-satoshi text-h1',
+      invert ? 'text-canvas-white' : 'text-ink-black',
+    ]}
+  >
+    {title}
+  </h2>
+  {
+    lede && (
+      <p
+        class:list={['max-w-[60ch] text-lede', invert ? 'text-white/70' : 'text-steel-gray']}
+        set:html={lede}
+      />
+    )
+  }
+</div>

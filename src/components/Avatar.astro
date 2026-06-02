@@ -1,0 +1,38 @@
+---
+// Avatar: renders a real headshot when `src` is given, else a clean monogram
+// fallback in Dub's ash circle. Drop a file at the src path to auto-upgrade.
+interface Props {
+  src?: string;
+  name: string;
+  size?: number;
+}
+const { src, name, size = 44 } = Astro.props;
+const initials = name
+  .split(' ')
+  .map((w) => w[0])
+  .slice(0, 2)
+  .join('')
+  .toUpperCase();
+---
+
+{
+  src ? (
+    <img
+      src={src}
+      alt={name}
+      width={size}
+      height={size}
+      class="rounded-full border border-border-light object-cover"
+      style={`width:${size}px;height:${size}px`}
+      loading="lazy"
+    />
+  ) : (
+    <span
+      class="inline-flex shrink-0 items-center justify-center rounded-full border border-logo-navy/20 bg-logo-navy/[0.08] font-mono text-meta font-semibold tracking-tight text-logo-navy"
+      style={`width:${size}px;height:${size}px`}
+      aria-label={name}
+    >
+      {initials}
+    </span>
+  )
+}

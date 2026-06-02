@@ -1,0 +1,62 @@
+---
+// Testimonials — three real endorsements from Site structure.md.
+// Marty & Trevor have headshots; Goswijn falls back to a monogram until a
+// photo is dropped at /headshots/goswijn-thijssen.jpg.
+import Section from './Section.astro';
+import SectionHead from './SectionHead.astro';
+import Avatar from './Avatar.astro';
+
+// Quotes trimmed to their punchiest VERBATIM core (no rewording); roles VERBATIM
+// from Site structure.md.
+const quotes = [
+  {
+    quote:
+      'I’d recommend him to anyone looking for a marketing leader who thrives in early-stage chaos.',
+    name: 'Marty Kratky-Katz',
+    role: 'exited tech founder',
+    photo: '/headshots/marty-kratky-katz.jpg',
+  },
+  {
+    quote:
+      'His calm demeanour and internal drive made working with him a delight every day.',
+    name: 'Trevor Thomas',
+    role: 'ex-OpenX revenue executive',
+    photo: '/headshots/trevor-thomas.jpg',
+  },
+  {
+    quote:
+      'He has the great ability to keep his head cool and bring a solutions-first mindset.',
+    name: 'Goswijn Thijssen',
+    role: 'ex-Google/Microsoft marketing executive',
+    // TODO: drop a headshot at public/headshots/goswijn-thijssen.jpg and set the
+    // path here to upgrade from the monogram fallback (photo is LinkedIn-gated).
+    photo: undefined,
+  },
+];
+---
+
+<Section id="testimonials" tone="navy">
+  <SectionHead title="Wall of love" invert />
+
+  <div class="mt-14 grid gap-4 md:grid-cols-3">
+    {
+      quotes.map((t) => (
+        <figure class="relative flex flex-col justify-between gap-6 overflow-hidden rounded-xl border border-border-light bg-canvas-white p-7 shadow-subtle">
+          <blockquote class="font-satoshi text-quote text-ink-black">
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
+          <div class="flex flex-col gap-5">
+            <div class="prism-line h-[2px] w-full rounded-full" />
+            <figcaption class="flex items-center gap-3">
+              <Avatar src={t.photo} name={t.name} size={44} />
+              <span class="flex flex-col">
+                <span class="text-meta font-semibold text-ink-black">{t.name}</span>
+                <span class="text-caption text-muted">{t.role}</span>
+              </span>
+            </figcaption>
+          </div>
+        </figure>
+      ))
+    }
+  </div>
+</Section>

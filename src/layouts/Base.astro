@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+import AgentationDevTool from '../components/Agentation.tsx';
+import CopyDiffer from '../components/CopyDiffer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'And/or Labs — the new OS for B2B growth',
+  description = 'And/or Labs helps seed to Series A startups dominate their category through clear positioning, content engineering, and AI-driven GTM enablement.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/andor-logo.png" />
+    <title>{title}</title>
+    <!-- Satoshi loads from Fontshare (see global.css @import); Inter/Geist/Spectral are self-hosted. -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+
+    {/* Dev-only visual feedback — annotate the live page, agent reads it via MCP */}
+    {import.meta.env.DEV && <AgentationDevTool client:only="react" />}
+
+    {/* Dev-only inline copy editor — edit text in place, copy a diff to hand back */}
+    {import.meta.env.DEV && <CopyDiffer />}
+  </body>
+</html>

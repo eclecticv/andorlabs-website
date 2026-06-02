@@ -1,0 +1,75 @@
+---
+// Floating nav: a rounded, translucent pill of limited width that hovers over
+// the canvas — Dub restraint with a single, purposeful use of glass. On mobile
+// the in-page links collapse into a compact disclosure (no JS framework needed).
+import { Icon } from 'astro-icon/components';
+import Wordmark from './Wordmark.astro';
+import Button from './Button.astro';
+
+const links = [
+  { label: 'Methodology', href: '#methodology' },
+  { label: 'How we work', href: '#how-we-work' },
+  { label: 'Wall of love', href: '#testimonials' },
+];
+---
+
+<header class="fixed inset-x-0 top-5 z-50 px-4">
+  <div
+    class="relative mx-auto flex h-14 max-w-[var(--width-narrow)] items-center justify-between gap-3 rounded-full border border-border-light/70 bg-canvas-white/70 pl-6 pr-3 shadow-[0_8px_30px_rgba(10,10,10,0.07)] backdrop-blur-xl backdrop-saturate-150"
+  >
+    <Wordmark />
+
+    <nav class="hidden items-center gap-0.5 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="rounded-full px-3 py-1.5 text-meta font-medium text-shadow-gray transition-colors hover:bg-ink-black/5 hover:text-ink-black"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1">
+      {/* Mobile-only disclosure for the in-page anchors */}
+      <details class="site-nav group relative md:hidden">
+        <summary
+          class="grid size-11 cursor-pointer list-none place-items-center rounded-full text-shadow-gray transition-colors hover:bg-ink-black/5 hover:text-ink-black [&::-webkit-details-marker]:hidden"
+          aria-label="Open navigation"
+        >
+          <Icon name="lucide:menu" class="size-5 group-open:hidden" />
+          <Icon name="lucide:x" class="hidden size-5 group-open:block" />
+        </summary>
+        <div
+          class="absolute right-0 top-[calc(100%+0.75rem)] flex w-52 flex-col gap-0.5 rounded-2xl border border-border-light/70 bg-canvas-white/90 p-2 shadow-[0_8px_30px_rgba(10,10,10,0.10)] backdrop-blur-xl backdrop-saturate-150"
+        >
+          {
+            links.map((l) => (
+              <a
+                href={l.href}
+                class="rounded-xl px-3 py-2.5 text-meta font-medium text-shadow-gray transition-colors hover:bg-ink-black/5 hover:text-ink-black"
+              >
+                {l.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+
+      <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="primary">Get started</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Close the mobile disclosure after a link is chosen so the panel doesn't
+  // cover the section the user just jumped to.
+  document.querySelectorAll('details.site-nav a').forEach((a) =>
+    a.addEventListener('click', () => {
+      const d = a.closest('details');
+      if (d) d.removeAttribute('open');
+    })
+  );
+</script>

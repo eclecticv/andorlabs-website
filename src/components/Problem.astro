@@ -1,0 +1,29 @@
+---
+// Problem — built to the literal structure of the BTF section in the visual ref:
+//   • two vertical outline rules bracketing the content
+//   • a clear inner grid with the text laid on top
+//   • NO decorative cards/fragments
+//   • thesis is one solid-ink text block with line breaks (no prism, no gradient text)
+// COPY IS VERBATIM from Site structure.md.
+import Container from './Container.astro';
+---
+
+<section class="relative border-t border-border-light bg-canvas-white">
+  <Container class="px-0">
+    <!-- two vertical outline rules + clear inner grid, text on top -->
+    <div class="problem-panel dot-grid relative mx-auto max-w-[var(--width-narrow)] border-x border-border-light px-6 py-28 sm:px-12 sm:py-36 lg:px-20 lg:py-44">
+      <div class="mx-auto max-w-full">
+        <h2 class="font-satoshi text-h1 text-logo-navy">
+          Most adtech startups sound like everybody else in their category
+        </h2>
+
+        <div class="thesis mt-10 space-y-6 text-[clamp(1.125rem,2.1vw,1.5625rem)] font-medium leading-[1.5] tracking-[-0.01em] text-shadow-gray">
+          <p>In doing so, they fail to give their buyers a compelling reason for choosing them over the competition.</p>
+          <p>Meanwhile: Zero click is killing site traffic, AI slop is clogging up every social feed, and buyers are busy trying to vibe-code your replacement before renewal.</p>
+          <p>Many adtech startups won't cross this chasm. And/or Labs was designed for the ones ready to leap.</p>
+          <p>We combine GenAI, evidence-based frameworks, and a decade of battle-tested operator experience to help adtech startups outclass their competition.</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

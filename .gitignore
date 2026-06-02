@@ -1,0 +1,21 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# astro
+.astro/
+
+# scratch / ephemera (design iterations, screenshots, mockups)
+.scratch/
+
+# local agent/tooling state
+.superpowers/
+
+# logs & env
+*.log
+.env
+.env.production
+.DS_Store

@@ -1,0 +1,158 @@
+/* ============================================================
+   DUB — "Crisp Utility on White Canvas"
+   Single source of truth for design tokens, mapped 1:1 from
+   Andor Labs/Design.md.md into Tailwind v4's @theme directive.
+   Every token here auto-generates utility classes
+   (e.g. --color-ink-black → bg-ink-black / text-ink-black).
+   ============================================================ */
+
+/* Satoshi has no npm package — Fontshare is its only source. */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
+@import 'tailwindcss';
+
+/* Self-hosted fonts (bundled, no external requests) */
+@import '@fontsource-variable/inter';
+@import '@fontsource/geist-mono/300.css';
+@import '@fontsource/geist-mono/400.css';
+@import '@fontsource/geist-mono/500.css';
+@import '@fontsource/spectral/500-italic.css';
+
+@theme {
+  /* ---- Colors (Dub palette) ---- */
+  --color-canvas-white: #ffffff;
+  --color-ink-black: #0a0a0a;
+  --color-thunder-gray: #171717;
+  --color-shadow-gray: #262626;
+  --color-steel-gray: #404040;
+  --color-muted: #737373;
+  --color-subtle-ash: #f5f5f5;
+  --color-border-light: #e5e5e5;
+  --color-border-muted: #d4d4d4;
+  --color-accent-blue: #2563eb; /* blue-600 accent · OKLCH L0.55 C0.22 H263 — deeper than blue-500 (L0.62) yet MAX separation from logo-navy (ΔE 0.26; going darker collides) + AA white-text contrast 5.17:1. The 10% tier of the palette. */
+  --color-logo-navy: #1e1d70; /* deep indigo sampled from the logo — dark surfaces + filled CTAs */
+  --color-deep-navy: #15144e; /* the footer close — ~two shades darker than logo-navy, so the page bottoms out in indigo, never pure black */
+  --color-fresh-green: #16a34a; /* pricing checkmarks */
+  --color-info-tint: #dcfce7; /* subtle success tint */
+
+  /* ---- Type families ---- */
+  --font-satoshi: 'Satoshi', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-inter: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-mark: 'Spectral', ui-serif, Georgia, serif; /* italic, used ONLY for the & brand mark */
+
+  /* ---- Type scale — THE single source of truth ----
+     rem-based (respects the reader's browser font size — never px on type),
+     and every step carries its own line-height / tracking / weight so a
+     component writes only `text-h1` and inherits the full treatment.
+     Don't hardcode font sizes in components; reach for a token here.
+
+     Roles, smallest → largest:
+       eyebrow  mono uppercase kickers/tags          (11px)
+       caption  fine print: roles, ©, credits        (12px)
+       meta     nav, list items, names, metadata     (14px)
+       body     paragraphs, card blurbs (base)       (15px)
+       lede     section intros / subheads            (18px)
+       quote    testimonial pull-quotes      Satoshi 18→21px
+       h4       card titles                  Satoshi 22px
+       stat     pricing figures              Satoshi 30px
+       h3       methodology pillar titles    Satoshi 26→36px
+       h1       section heads + thesis       Satoshi 30→48px
+       display  the hero                     Satoshi 40→68px       */
+
+  /* Fixed UI / body (Inter) */
+  --text-eyebrow: 0.6875rem; --text-eyebrow--line-height: 1.4;  --text-eyebrow--letter-spacing: 0.12em; --text-eyebrow--font-weight: 500;
+  --text-caption: 0.75rem;   --text-caption--line-height: 1.4;
+  --text-meta: 0.875rem;     --text-meta--line-height: 1.45;
+  --text-body: 0.9375rem;    --text-body--line-height: 1.55;
+  --text-lede: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); --text-lede--line-height: 1.6; /* 17→19px; +leading reads right on navy */
+
+  /* Display (Satoshi) — fluid clamp() on the larger steps; tracking tightens
+     as size grows, the rule the old hand-rolled headings never followed. */
+  --text-quote: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);  --text-quote--line-height: 1.4;  --text-quote--letter-spacing: -0.015em; --text-quote--font-weight: 500;
+  --text-h4: 1.375rem;                                        --text-h4--line-height: 1.2;     --text-h4--letter-spacing: -0.015em; --text-h4--font-weight: 700;
+  --text-stat: 1.875rem;                                      --text-stat--line-height: 1;     --text-stat--letter-spacing: -0.02em;  --text-stat--font-weight: 700;
+  --text-h3: clamp(1.625rem, 1.25rem + 1.6vw, 2.25rem);       --text-h3--line-height: 1.14;    --text-h3--letter-spacing: -0.02em;  --text-h3--font-weight: 700;
+  --text-h1: clamp(1.875rem, 1.3rem + 2.4vw, 3rem);           --text-h1--line-height: 1.06;    --text-h1--letter-spacing: -0.032em; --text-h1--font-weight: 700;
+  --text-display: clamp(2.5rem, 1.5rem + 4.4vw, 4.25rem);     --text-display--line-height: 1.02; --text-display--letter-spacing: -0.035em; --text-display--font-weight: 700;
+
+  /* ---- Radii (override Tailwind defaults to match Dub) ---- */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+
+  /* ---- Shadows (subtle, diffused — never heavy) ---- */
+  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.09), 0 8px 10px -6px rgba(0, 0, 0, 0.07);
+
+  /* ---- Prismatic rainbow — kept as a thin EDGE accent only (never a fill) ---- */
+  --gradient-prism: linear-gradient(90deg, #8cc2ff 0%, #c8b8ff 27%, #ffc4da 54%, #ffddb6 78%, #baf0d4 100%);
+
+  /* ---- Content widths — the ONLY two indents on the site. Every block adheres
+     to one or the other (readability line-caps on prose are separate). ---- */
+  --width-wide: 1200px; /* multi-column grids / full-bleed: methodology, testimonials, footer */
+  --width-narrow: 840px; /* focused single-column: hero, problem, pricing, section heads, nav */
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-inter);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    color: var(--color-ink-black);
+    background: var(--color-canvas-white);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, on-brand keyboard focus — applies only to keyboard nav, follows
+     the element's border-radius (so it rounds on pill buttons). */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-blue);
+    outline-offset: 2px;
+  }
+
+  /* On navy surfaces the accent ring is only ~2.8:1; switch to a white ring
+     (~15:1) so focus stays clearly visible on dark sections (footer, etc.). */
+  .bg-logo-navy :focus-visible {
+    outline-color: var(--color-canvas-white);
+  }
+}
+
+/* ============================================================
+   UTILITIES — Dub signatures that aren't single tokens
+   ============================================================ */
+@utility prism-line {
+  /* thin rainbow rule for edges / dividers */
+  background-image: var(--gradient-prism);
+}
+
+@utility graph-paper {
+  /* faint engineering grid for the hero canvas */
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility dot-grid {
+  /* The canonical dot texture for white surfaces. Single source of truth —
+     used behind the Problem statement and the How-we-work section so they match. */
+  background-image: radial-gradient(circle, rgba(10, 10, 10, 0.14) 1.2px, transparent 1.3px);
+  background-size: 28px 28px;
+}
+
+@utility mark-amp {
+  /* the & brand mark: Spectral italic, the one serif in the system */
+  font-family: var(--font-mark);
+  font-style: italic;
+  font-weight: 500;
+}

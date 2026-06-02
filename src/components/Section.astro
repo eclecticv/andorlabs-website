@@ -1,0 +1,40 @@
+---
+// A vertical content band with Dub's generous rhythm (≥64px gaps).
+// `tone` swaps the surface; `hairline` adds a top divider.
+import Container from './Container.astro';
+
+interface Props {
+  id?: string;
+  tone?: 'white' | 'ash' | 'navy';
+  hairline?: boolean;
+  class?: string;
+  containerClass?: string;
+}
+const {
+  id,
+  tone = 'white',
+  hairline = false,
+  class: className = '',
+  containerClass = '',
+} = Astro.props;
+
+const tones = {
+  white: 'bg-canvas-white',
+  ash: 'bg-subtle-ash',
+  navy: 'bg-logo-navy',
+};
+---
+
+<section
+  id={id}
+  class:list={[
+    'py-16 sm:py-20 lg:py-24',
+    tones[tone],
+    hairline && 'border-t border-border-light',
+    className,
+  ]}
+>
+  <Container class={containerClass}>
+    <slot />
+  </Container>
+</section>

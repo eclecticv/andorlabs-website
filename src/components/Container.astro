@@ -1,0 +1,18 @@
+---
+// The content column. Exactly two indents site-wide: `wide` (1200) and
+// `narrow` (840), both sourced from the --width-* tokens in global.css.
+interface Props {
+  class?: string;
+  as?: keyof HTMLElementTagNameMap;
+  width?: 'wide' | 'narrow';
+}
+const { class: className = '', as: Tag = 'div', width = 'wide' } = Astro.props;
+const widths = {
+  wide: 'max-w-[var(--width-wide)]',
+  narrow: 'max-w-[var(--width-narrow)]',
+};
+---
+
+<Tag class:list={['mx-auto w-full px-6 sm:px-8', widths[width], className]}>
+  <slot />
+</Tag>

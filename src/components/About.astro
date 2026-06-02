@@ -1,0 +1,35 @@
+---
+// About — a clean, contained founder card: medium portrait + readable bio,
+// balanced. Body copy is VERBATIM from Site structure.md.
+import Section from './Section.astro';
+import Kicker from './Kicker.astro';
+---
+
+<Section id="about" hairline>
+  <div class="mx-auto max-w-[var(--width-narrow)] overflow-hidden rounded-2xl border border-border-light bg-canvas-white shadow-sm">
+    <div class="prism-line h-[2px] w-full"></div>
+    <div class="grid items-center gap-8 p-8 sm:grid-cols-[200px_1fr] sm:gap-10 sm:p-10">
+      <img
+        src="/headshots/vj-headshot.png"
+        alt="Vishveshwar Jatain, founder of And/or Labs"
+        width="200"
+        height="200"
+        class="aspect-square w-full max-w-[200px] rounded-xl border border-border-light object-cover"
+        loading="lazy"
+      />
+
+      <div class="flex flex-col items-start gap-4">
+        <Kicker>About</Kicker>
+        <!-- Body copy is VERBATIM from Site structure.md. -->
+        <p class="text-lede text-ink-black">
+          And/or Labs was founded by Vishveshwar Jatain, who previously led marketing and sales
+          operations at two advertising technology startups, Blockthrough (acquired by eyeo in 2022)
+          and AdPushup (acquired by Geniee in 2023).
+        </p>
+        <span class="mt-1 font-mono text-eyebrow uppercase text-muted">
+          Vishveshwar (VJ) Jatain — Founder
+        </span>
+      </div>
+    </div>
+  </div>
+</Section>

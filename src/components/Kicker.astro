@@ -1,0 +1,20 @@
+---
+// Mono eyebrow label with the signature prism dash. The rainbow appears
+// ONLY as this thin edge accent — never as a fill.
+interface Props {
+  class?: string;
+  invert?: boolean; // light label for dark backgrounds
+}
+const { class: className = '', invert = false } = Astro.props;
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-2 font-mono text-eyebrow uppercase',
+    invert ? 'text-white/60' : 'text-muted',
+    className,
+  ]}
+>
+  <span class="prism-line h-[3px] w-5 rounded-full"></span>
+  <slot />
+</span>

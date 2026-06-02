@@ -1,0 +1,100 @@
+---
+// How we work — two engagement plans. `featured` marks the currently-emphasized
+// engagement: Transformation Sprint (the 4-week sprint) gets the accent border + filled
+// CTA. The Fractional retainer is intentionally de-emphasized (hairline border +
+// ghost "Join waitlist") because it is not actively booking right now.
+import Section from './Section.astro';
+import SectionHead from './SectionHead.astro';
+import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+
+// Plan copy is VERBATIM from Site structure.md.
+const plans = [
+  {
+    featured: false,
+    tag: 'Retainer',
+    name: 'Fractional Head of Marketing',
+    blurb: 'Get a 2x-exited AdTech marketer embedded in your team and owning the roadmap.',
+    price: '$7.5k',
+    cadence: '/mo',
+    features: ['Custom roadmap development', 'Weekly strategy call', 'Email & Slack access'],
+    cta: 'Join waitlist',
+  },
+  {
+    featured: true,
+    tag: '4-week sprint',
+    name: 'Transformation Sprint',
+    blurb: 'Look like a Series B startup in 4 weeks—without the big-agency price tag.',
+    price: '$10k',
+    cadence: 'one-time',
+    features: ['Brand & design refresh', 'Re-worked positioning', 'New, AI-ready website'],
+    cta: 'Reserve your spot',
+  },
+];
+---
+
+<Section id="how-we-work" tone="white" class="dot-grid">
+  <SectionHead
+    title="How we work"
+    lede="No agency bloat or junior team learning on your dime—just one operator who has scaled two adtech startups to exit."
+  />
+
+  <div class="mx-auto mt-14 grid max-w-[var(--width-narrow)] items-stretch gap-6 md:grid-cols-2">
+    {
+      plans.map((p) => (
+        <div
+          class:list={[
+            'relative flex flex-col overflow-hidden rounded-2xl border bg-canvas-white p-8 shadow-sm transition-shadow hover:shadow-md',
+            p.featured ? 'border-accent-blue' : 'border-border-light',
+          ]}
+        >
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-eyebrow uppercase text-muted">
+              {p.tag}
+            </span>
+          </div>
+
+          <h3 class="mt-3 font-satoshi text-h4 text-ink-black">
+            {p.name}
+          </h3>
+          <p class="mt-2 max-w-[34ch] text-body text-steel-gray">{p.blurb}</p>
+
+          <div class="mt-5 flex items-baseline gap-1.5">
+            <span class="font-satoshi text-[1.5rem] font-bold leading-none tracking-[-0.02em] text-ink-black">
+              {p.price}
+            </span>
+            {p.cadence && <span class="text-meta font-medium text-muted">{p.cadence}</span>}
+          </div>
+
+          <ul class="mt-6 flex flex-col gap-3 border-t border-border-light pt-6">
+            {p.features.map((f) => (
+              <li class="flex items-center gap-2.5 text-meta text-thunder-gray">
+                <Icon name="lucide:check" class="h-4 w-4 shrink-0 text-fresh-green" />
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-auto pt-8">
+            <Button
+              href="https://tally.so/r/ZjaeZV"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant={p.featured ? 'primary' : 'ghost'}
+              class="w-full"
+            >
+              {p.cta}
+            </Button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="mt-10 text-center text-body text-steel-gray">
+    Have a custom project?{' '}
+    <a href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" class="font-semibold text-ink-black underline underline-offset-4 decoration-border-muted hover:decoration-ink-black">
+      Let's talk &rarr;
+    </a>
+  </p>
+</Section>

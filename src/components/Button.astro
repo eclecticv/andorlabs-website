@@ -1,0 +1,39 @@
+---
+// Dub buttons: navy filled pill (primary) · hairline ghost pill (secondary).
+// Accent-blue variant exists but is reserved for rare, high-intent CTAs.
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'ghost' | 'accent';
+  size?: 'md' | 'lg';
+  class?: string;
+  icon?: string; // lucide icon name, rendered trailing
+}
+const { href, variant = 'primary', size = 'md', class: className = '', icon, ...rest } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold leading-none transition-all duration-150 will-change-transform';
+const sizes = {
+  md: 'px-[18px] py-[11px] text-meta',
+  lg: 'px-7 py-[15px] text-base',
+};
+const variants = {
+  primary:
+    'bg-logo-navy text-canvas-white shadow-subtle hover:-translate-y-px hover:shadow-md',
+  ghost:
+    'bg-canvas-white text-ink-black border border-border-light hover:bg-subtle-ash hover:border-border-muted',
+  accent:
+    'bg-accent-blue text-canvas-white shadow-subtle hover:-translate-y-px hover:shadow-md',
+};
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  class:list={[base, sizes[size], variants[variant], className]}
+  {...rest}
+>
+  <slot />
+  {icon && <Icon name={`lucide:${icon}`} class="h-[15px] w-[15px]" />}
+</Tag>

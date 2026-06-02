@@ -5,7 +5,7 @@ interface Props {
   label?: string;
   class?: string;
 }
-const { label = 'bylines and quotes in', class: className = '' } = Astro.props;
+const { label = 'as seen on', class: className = '' } = Astro.props;
 
 const press = [
   { name: 'Forbes', src: '/logos/forbes.svg' },
@@ -26,7 +26,7 @@ const press = [
           <img
             src={p.src}
             alt={p.name}
-            class="h-6 w-auto opacity-50 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
+            class="h-8 w-auto opacity-35 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0"
             loading="lazy"
           />
         </li>

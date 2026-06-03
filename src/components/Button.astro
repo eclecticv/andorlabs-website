@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
   href?: string;
-  variant?: 'primary' | 'ghost' | 'accent';
+  variant?: 'primary' | 'ghost' | 'accent' | 'light' | 'outline';
   size?: 'md' | 'lg';
   class?: string;
   icon?: string; // lucide icon name, rendered trailing
@@ -13,10 +13,16 @@ interface Props {
 const { href, variant = 'primary', size = 'md', class: className = '', icon, ...rest } = Astro.props;
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold leading-none transition-all duration-150 will-change-transform';
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold leading-none transition-[scale,translate,box-shadow,background-color,border-color] duration-150 ease-out will-change-transform active:scale-[0.96]';
 const sizes = {
   md: 'px-[18px] py-[11px] text-meta',
   lg: 'px-7 py-[15px] text-base',
+};
+// Optical alignment: a trailing icon reads as pushed too far right with equal
+// padding, so trim the icon side by ~2px (icon-side = text-side − 2px).
+const iconTrim = {
+  md: 'pr-4',        // 18px → 16px
+  lg: 'pr-[26px]',   // 28px → 26px
 };
 const variants = {
   primary:
@@ -25,13 +31,20 @@ const variants = {
     'bg-canvas-white text-ink-black border border-border-light hover:bg-subtle-ash hover:border-border-muted',
   accent:
     'bg-accent-blue text-canvas-white shadow-subtle hover:-translate-y-px hover:shadow-md',
+  // Inverted pill — white on navy. The high-contrast CTA for dark surfaces
+  // (e.g. the featured pricing card) where a navy filled pill would vanish.
+  light:
+    'bg-canvas-white text-logo-navy shadow-subtle hover:-translate-y-px hover:shadow-md',
+  // Hairline ghost FOR dark surfaces — the secondary CTA on a dark card.
+  outline:
+    'bg-transparent text-canvas-white border border-white/25 hover:bg-white/10 hover:border-white/40',
 };
 const Tag = href ? 'a' : 'button';
 ---
 
 <Tag
   href={href}
-  class:list={[base, sizes[size], variants[variant], className]}
+  class:list={[base, sizes[size], icon && iconTrim[size], variants[variant], className]}
   {...rest}
 >
   <slot />

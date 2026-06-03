@@ -69,7 +69,17 @@ const TRACK_W = 188;
       pillars.map((p, i) => {
         const flip = i % 2 === 1;
         return (
-          <div class="relative z-10 grid items-center gap-10 py-10 lg:grid-cols-2 lg:gap-16 lg:py-12">
+          <>
+            {/* thin prism divider between pillars — fades at both ends so it
+                reads as a hairline, not a hard rule. The "dividers" prism placement. */}
+            {i > 0 && (
+              <div
+                class="prism-line relative z-10 h-px w-full opacity-50"
+                aria-hidden="true"
+                style="-webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)"
+              />
+            )}
+            <div class="relative z-10 grid items-center gap-10 py-10 lg:grid-cols-2 lg:gap-16 lg:py-12">
             {/* text column */}
             <div class:list={['flex flex-col items-start gap-2', flip && 'lg:order-2']}>
               <span class="font-satoshi text-display leading-none text-white/25">
@@ -85,7 +95,7 @@ const TRACK_W = 188;
             <div class:list={[flip && 'lg:order-1']}>
               <div
                 class:list={[
-                  'viz-reveal relative aspect-[4/3] w-full max-w-[380px] overflow-hidden rounded-xl border border-border-light bg-subtle-ash',
+                  'viz-reveal relative aspect-[4/3] w-full max-w-[380px] overflow-hidden rounded-xl bg-subtle-ash shadow-border',
                   flip ? 'lg:mr-auto' : 'lg:ml-auto',
                 ]}
               >
@@ -162,7 +172,8 @@ const TRACK_W = 188;
                 )}
               </div>
             </div>
-          </div>
+            </div>
+          </>
         );
       })
     }
@@ -190,7 +201,7 @@ const TRACK_W = 188;
 
   @supports (animation-timeline: view()) {
     .viz-reveal {
-      animation: viz-rise ease-out both;
+      animation: viz-rise var(--ease-out) both;
       animation-timeline: view();
       animation-range: entry 5% cover 28%;
     }

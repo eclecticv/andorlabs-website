@@ -20,8 +20,9 @@ import PressRow from './PressRow.astro';
   <Container width="narrow" class="relative flex flex-1 flex-col pt-24 pb-8 sm:pt-28">
     {/* main content — vertically centered in the space above the press row */}
     <div class="flex w-full flex-1 flex-col items-center justify-center text-center">
-      <p class="mb-4 text-meta text-steel-gray">
-        Founded by <span class="font-semibold text-ink-black">Vishveshwar Jatain</span>, 2x exited AdTech marketer
+      <p class="mb-6 rounded-2xl border border-border-light bg-canvas-white px-4 py-2 text-center text-meta leading-snug text-steel-gray shadow-subtle">
+        Founded by <span class="font-semibold text-ink-black">Vishveshwar Jatain</span>,<br />
+        2x exited AdTech marketer
       </p>
       <h1 class="font-satoshi text-display text-logo-navy">
         The proven OS<br class="hidden sm:block" /> for adtech growth
@@ -32,9 +33,17 @@ import PressRow from './PressRow.astro';
         positioning, buyer-led content, and AI x GTM enablement.
       </p>
 
-      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+      <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
         <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="primary" size="lg">Get started</Button>
-        <Button href="https://tally.so/r/ZjaeZV" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg">Claim free audit</Button>
+        <a
+          href="https://tally.so/r/ZjaeZV"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-1.5 text-base font-semibold text-steel-gray transition-colors hover:text-ink-black"
+        >
+          Or get a free audit
+          <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+        </a>
       </div>
     </div>
 

@@ -11,16 +11,19 @@ const pillars = [
     title: 'Positioning & offer design',
     body: 'We craft a differentiated positioning to make it obvious why a buyer should pick you over the alternatives, then pair that with a custom designed site optimized for conversions.',
     viz: 'map',
+    pills: ['Branding', 'Positioning', 'Design', 'Analytics', 'CRO'],
   },
   {
     title: 'Content engineering',
     body: 'We benchmark your visibility across search, AI chatbots, social, and offsite channels, then set up AI playbooks to close the gap, with human-in-the-loop quality reviews.',
     viz: 'bars',
+    pills: ['Founder-led storytelling', 'SEO/AEO', 'Newsletters', 'Industry reports', 'Interactive content'],
   },
   {
     title: 'AI x GTM transformation',
     body: 'We enable your growth teams by modernizing your technology stack to cut down on busywork, activate new GTM motions, and deliver real-time sales intelligence.',
     viz: 'graph',
+    pills: ['Tech stack design', 'Workflow automation', 'Account-based marketing', 'Signal-based sales', 'Go-to-network'],
   },
 ];
 
@@ -89,6 +92,15 @@ const TRACK_W = 188;
                 {p.title}
               </h3>
               <p class="max-w-[46ch] text-lede text-white/75">{p.body}</p>
+
+              {/* deliverables — hairline pills that make the pillar concrete */}
+              <ul class="mt-3 flex flex-wrap gap-2" aria-label="What this includes">
+                {p.pills.map((pill) => (
+                  <li class="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-meta font-medium text-white/80">
+                    {pill}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* bespoke visual — consistent 4:3 frame, prism top edge */}
